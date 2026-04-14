@@ -1,11 +1,11 @@
 # Encoders Plugin
 
-A SimHub plugin that turns physical rotary encoders into smart in-car controls. The plugin reads HID buttons directly, syncs your encoder positions with in-game settings (ABS, TC, fuel mix, ERS and more), supports both incremental and absolute encoders, and can drive a Multi-Link mode where one encoder selects the role another encoder triggers. It also injects live overlays on top of any VoCore display so you can see the active mode at a glance from inside the cockpit.
+A SimHub plugin that turns physical rotary encoders into smart in-car controls. The plugin reads HID buttons directly, syncs your encoder positions with in-game settings (ABS, TC, engine map and more), supports both incremental and absolute encoders, and can drive a Multi-Link mode where one encoder selects the role another encoder triggers. It also injects live overlays on top of any VoCore display so you can see the active mode at a glance from inside the cockpit.
 
 ## How It Works
 
 1. Configure your encoder device in SimHub's Control Mapper with the increase/decrease roles you want to drive (for example `ABS+`/`ABS-`, `TractionControl+`/`-`, `FuelMix+`/`-`).
-2. Add the encoder in the plugin and choose its type (ABS, TC, TC Cut, TC Slip, Engine Brake, Fuel Mix, ERS Mode, Engine Map).
+2. Add the encoder in the plugin and choose its type (ABS, TC, TC Cut, TC Slip, Engine Map).
 3. The plugin reads HID button presses directly via [HidSharp](https://github.com/IntergatedCircuits/HidSharp), tracks a virtual position, and triggers the Control Mapper roles as needed so the in-game value matches what you have rotated to.
 4. Sync runs only when the game is running and ignition is ON; it pauses automatically during replays, menu screens or when the car is not loaded.
 
@@ -21,7 +21,7 @@ A SimHub plugin that turns physical rotary encoders into smart in-car controls. 
 ### Encoder Types
 The plugin reads the in-game value via SimHub telemetry for each supported type so the sync direction is always correct:
 
-- ABS · TC · TC Cut · TC Slip · Engine Brake · Fuel Mix · ERS Mode · Engine Map
+- ABS · TC · TC Cut · TC Slip · Engine Map
 
 For TC Cut and TC Slip the plugin uses the most accurate per-game property path (iRacing, ACC, ACE, AC Rally, LMU, etc.).
 
