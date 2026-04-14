@@ -58,9 +58,14 @@ The plugin exposes properties so dashboards, formulas and other plugins can reac
 - `EncodersPlugin.MultiLinkLeft.Triggered` / `.MultiLinkRight.Triggered` — last triggered role name (auto-clears after ~1.5 s)
 - `EncodersPlugin.MultiLinkLeft.AllLabels` / `.MultiLinkRight.AllLabels` — comma-separated list of all configured labels for that side
 
+### Auto-Update
+- **Automatic check on start** — every time you open the plugin in SimHub, it queries the GitHub Releases API and shows the result in the header next to the version number.
+- **One-click in-place upgrade** — when a new version is available, the header lights up with `Version: X → Y  available  [Check Updates] [Download]`. Click Download to fetch the new DLL into `Documents\EncodersPlugin\updates\`, then Install & Restart to swap it. The plugin writes a small batch script that waits for SimHub to close, replaces the DLL in the SimHub folder, and reopens SimHub automatically.
+- **Manual refresh** — click the Check Updates button at any time to re-query GitHub without restarting the plugin.
+- **No external installer** — everything runs from inside the plugin; you never have to download or copy DLLs by hand after the first install.
+
 ### Other
-- **Auto-Update Check** — checks for new versions on GitHub Releases when the plugin opens, with a one-click Download / Install & Restart button in the header.
-- **Built-in Guide tab** — eight collapsible sections covering setup, both encoder modes, Multi-Link, the VoCore overlay, exposed SimHub properties and troubleshooting.
+- **Built-in Guide tab** — eight collapsible sections covering setup, both encoder modes, Multi-Link, the VoCore overlay, exposed SimHub properties, the auto-update flow, and troubleshooting.
 - **Debug logging** — toggle from Settings; logs go to `Documents\EncodersPlugin\EncodersPlugin.log` and are cleared on every SimHub start.
 - **Dark theme** — matches SimHub's native look with SimHub controls.
 
@@ -96,13 +101,24 @@ Version, links to releases, donation link, and links to the author's other SimHu
 
 ## Installation
 
+### First install
+
 1. Download the latest `EncodersPlugin.dll` from [Releases](https://github.com/BrunoSilva1978PT/Encoders-SimHub-Plugin/releases)
 2. Close SimHub
 3. Copy the DLL to your SimHub installation folder (default: `C:\Program Files (x86)\SimHub\`)
 4. Open SimHub
 5. The plugin appears in the left menu as **Encoders Plugin**
 
-The plugin will check for updates automatically on each start. When a new version is available, click **Download** and then **Install & Restart** in the header to update in place — SimHub closes, the DLL is swapped, and SimHub reopens.
+### Updating
+
+After the first install, you never need to download a DLL by hand again — the plugin updates itself.
+
+1. Open the Encoders Plugin in SimHub
+2. The header at the top right of the plugin window shows the current version. The plugin queries GitHub Releases automatically on every start; you can also click **Check Updates** to refresh manually.
+3. When a new version is available, the header changes to `Version: X.Y.Z → A.B.C  available  [Check Updates] [Download]`
+4. Click **Download** — the new DLL is fetched into `Documents\EncodersPlugin\updates\` with a live progress percentage
+5. The button changes to **Install & Restart**. Click it.
+6. The plugin writes a small batch script, closes SimHub, swaps the DLL in the SimHub folder, and reopens SimHub automatically with the new version
 
 ## Other Plugins by the Same Author
 
